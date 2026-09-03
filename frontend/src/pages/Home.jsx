@@ -5,7 +5,7 @@ import Card from "../components/Card";
 const Home = () => {
   return (
     <div>
-      <div className="pt-1">
+      <div className="rounded-xl">
         <Navbar />
       </div>
       <div className="pt-1 flex flex-wrap gap-6 justify-center">
