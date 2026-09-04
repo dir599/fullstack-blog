@@ -4,8 +4,8 @@ import ApiError from "../utils/apiError.js";
 import { hashed_Password, compare_Password } from "../utils/password.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
 
-const registerService = async ({ username, email, password, role }) => {
-  if (!username || !email || !password || !role) {
+const registerService = async ({ username, email, password, role, fullname }) => {
+  if (!username || !email || !password || !role || !fullname) {
     throw new Error(400, "All fields are required.");
   }
   const hashedPassword = await hashed_Password(password);
@@ -15,6 +15,7 @@ const registerService = async ({ username, email, password, role }) => {
       email,
       password: hashedPassword,
       role,
+      fullname,
     },
   });
   return registerUser;

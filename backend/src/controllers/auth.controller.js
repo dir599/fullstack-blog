@@ -3,8 +3,8 @@ import { generateAccessRefreshToken, loginService, logOutService, registerServic
 import ApiError from "../utils/apiError.js";
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password, role } = req.body;
-  await registerService({ username, email, password, role });
+  const { username, email, password, role, fullname } = req.body;
+  await registerService({ username, email, password, role, fullname });
   if (password.length <= 6) {
     throw new ApiError(400, "Password must be at least  6 character");
   }
