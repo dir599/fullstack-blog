@@ -13,7 +13,7 @@ const generateAccessToken = ( user ) => {
 };
 
 const generateRefreshToken = ( user ) => {
-  jwt.sign(
+  return jwt.sign(
     {
       userId: user.id,
     },
