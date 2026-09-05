@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
+import axios from "axios"
+
 
 const Home = () => {
+  const fetchBlogs = async()=>{
+    const response = await axios.get("http://localhost:9000/user/all")
+  }
+
+  useEffect(()=>{
+     fetchBlogs()
+  },[])
   return (
     <div>
       <div className="rounded-xl">
