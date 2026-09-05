@@ -3,6 +3,7 @@ import {
   deleteByIdService,
   getAllUserService,
   getUserByIdService,
+  updateUserRoleService,
   updateUserService,
 } from "../services/user.service.js";
 import ApiError from "../utils/apiError.js";
