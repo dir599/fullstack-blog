@@ -6,7 +6,7 @@ import axios from "axios"
 
 const Home = () => {
   const fetchBlogs = async()=>{
-    const response = await axios.get("http://localhost:9000/user/all")
+    const response = await axios.get("http://localhost:9000/blog/get")
   }
 
   useEffect(()=>{

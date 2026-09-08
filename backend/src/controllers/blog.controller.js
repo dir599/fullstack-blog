@@ -7,9 +7,10 @@ import {
 } from "../services/blog.service.js";
 import ApiError from "../utils/apiError.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 const createBlog = asyncHandler(async (req, res) => {
-  const { title, description, coverImage } = req.body;
+  const { title, description } = req.body;
   const authorId = req.user.id;
   // Input validation
   if (!title?.trim() || !description?.trim()) {
@@ -23,10 +24,18 @@ const createBlog = asyncHandler(async (req, res) => {
   if (description.trim().length < 10) {
     throw new ApiError(400, "Description must be at least 10 characters");
   }
+  if(!req.file){
+    throw new ApiError(400, "Cover image is required")
+  }
+  const uploadImage = await uploadOnCloudinary(req.file.path)
+  console.log(uploadImage)
+  if(!uploadImage){
+    throw new ApiError(500,"Cover image upload fail")
+  }
   const blog = await createBlogService({
     title: title.trim(),
     description: description.trim(),
-    coverImage,
+    coverImage: uploadImage.secure_url,
     authorId,
   });
 
