@@ -4,9 +4,11 @@ import jwt from "jsonwebtoken";
 
 export const jwtVerify = async (req, res, next) => {
   try {
+    console.log("cookies:", req.cookies);
+console.log("accessToken:", req.cookies?.accessToken);
     const token =
       req.cookies?.accessToken ||
-      req.header("Authorization")?.replace("Bearer", "");
+      req.header("Authorization")?.replace("Bearer ", "");
     // console.log(token);
     if (!token) {
       throw new ApiError(401, "Unauthorized request");
