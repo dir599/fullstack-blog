@@ -10,6 +10,7 @@ const SingleBlog = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchBlog = async () => {
+    console.log("fetch blog called")
     try {
       const response = await axios.get(
         `http://localhost:9000/blog/get/${id}`
