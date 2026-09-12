@@ -17,7 +17,7 @@ const Navbar = () => {
       {/* Routes */}
       <div className="ml-auto">
         <ul className="flex gap-20 bg-blue-400 rounded-2xl px-8 py-3">
-          <Link to="/" className="text-gray-600 hover:text-orange-500">
+          <Link to="/home" className="text-gray-600 hover:text-orange-500">
             Home
           </Link>
           <Link to="/about" className="text-gray-600 hover:text-orange-500">
