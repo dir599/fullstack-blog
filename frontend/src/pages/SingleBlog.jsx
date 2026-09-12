@@ -52,7 +52,7 @@ const SingleBlog = () => {
     console.log(response)
     if(response.status === 200){
         alert("blog delete")
-        navigate("/")
+        navigate("/home")
     }else{
         alert("blog not delete")
     }
