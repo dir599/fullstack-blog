@@ -1,28 +1,59 @@
 import axios from "axios";
 import { useState } from "react";
-import { data } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
+
 
 const CreateBlog = () => {
-  const [formData, setFromData] = useState({
+  const navigate = useNavigate()
+   const [formData, setFromData] = useState({
     title: "",
     description: "",
-    coverImage: "",
+    coverImage: null,
   });
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
+
     setFromData({
       ...formData,
-      [name]: value,
+      [name]: files ? files[0] : value,
     });
   };
-  const createBlog = async(e)=>{
-    e.preventDefault()
-    const response = await axios.post("http://localhost:9000/blog/create", formData)
-    console.log(response)
 
-  }
+  const createBlog = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+
+    data.append("title", formData.title);
+    data.append("description", formData.description);
+
+    if (formData.coverImage) {
+      data.append("coverImage", formData.coverImage);
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:9000/blog/create",
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(response.data);
+      navigate("/home")
+    } catch (error) {
+      console.log(error.response?.data || error.message);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 px-4 py-10">
+      <div>
+        <Navbar />
+      </div>
       <div className="mx-auto max-w-2xl rounded-xl bg-white p-8 shadow-md">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">
@@ -96,22 +127,6 @@ const CreateBlog = () => {
             <p className="mt-2 text-sm text-gray-500">
               Upload your blog cover image.
             </p>
-          </div>
-           {/* Author ID */}
-          <div className="form-group">
-            <label htmlFor="authorId">
-              Author ID
-            </label>
-
-            <input
-              id="authorId"
-              name="authorId"
-              type="number"
-              placeholder="Enter author ID"
-              value={formData.authorId}
-              onChange={handleChange}
-              required
-            />
           </div>
 
           {/* Button */}

@@ -17,7 +17,7 @@ const About = () => {
             About Our Blog
           </h1>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-600">
+          <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-gray-600">
             Welcome to our blog platform — a place where developers can share
             ideas, learn new technologies, and discover useful articles from
             other developers.
