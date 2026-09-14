@@ -7,6 +7,7 @@ import Contact from "./pages/Contact";
 import SingleBlog from "./pages/SingleBlog";
 import CreateBlog from "./pages/CreateBlog";
 import Login from "./pages/Login";
+import Sidebar from "./components/Sidebar";
 
 
 const App = () => {
@@ -15,11 +16,13 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/sidebar" element={<Sidebar />} />
       <Route path= "/home" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/crateBlog" element={<CreateBlog />} />
       <Route path="/blog/:id" element={<SingleBlog />} />
+      
     </Routes>
     </BrowserRouter>
     

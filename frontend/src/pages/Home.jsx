@@ -2,6 +2,7 @@ import  { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import axios from "axios";
+import Sidebar from "../components/Sidebar";
 
 const Home = () => {
   const [blogs, setBlogs] = useState([]);
@@ -18,6 +19,9 @@ const Home = () => {
     <div>
       <div className="rounded-xl">
         <Navbar />
+      </div>
+      <div>
+        <Sidebar />
       </div>
       <div className="pt-1 flex flex-wrap gap-6 justify-center">
         {blogs.map((blog) => {
