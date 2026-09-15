@@ -21,7 +21,7 @@ const Sidebar = () => {
               to="/home"
               className="block rounded-lg px-4 py-3 hover:bg-gray-800 transition"
             >
-              🏠 Home
+              Home
             </Link>
           </li>
 
@@ -30,7 +30,7 @@ const Sidebar = () => {
               to="/createBlog"
               className="block rounded-lg px-4 py-3 hover:bg-gray-800 transition"
             >
-              ✍️ Create Blog
+              Create Blog
             </Link>
           </li>
 
@@ -39,7 +39,7 @@ const Sidebar = () => {
               to="/about"
               className="block rounded-lg px-4 py-3 hover:bg-gray-800 transition"
             >
-              ℹ️ About
+              About
             </Link>
           </li>
 
@@ -48,7 +48,7 @@ const Sidebar = () => {
               to="/contact"
               className="block rounded-lg px-4 py-3 hover:bg-gray-800 transition"
             >
-              📩 Contact
+              Contact
             </Link>
           </li>
 

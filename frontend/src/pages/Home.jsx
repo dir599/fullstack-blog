@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import Card from "../components/Card";
 import axios from "axios";
@@ -20,14 +20,18 @@ const Home = () => {
       <div className="rounded-xl">
         <Navbar />
       </div>
-      <div>
+     <div className="flex">
+       <div>
         <Sidebar />
       </div>
-      <div className="pt-1 flex flex-wrap gap-6 justify-center">
-        {blogs.map((blog) => {
-          return <Card key= {blog.id} value={blog} />;
-        })}
-      </div>
+      <main className="flex-1 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {blogs.map((blog) => {
+            return <Card key={blog.id} value={blog} />;
+          })}
+        </div>
+      </main>
+     </div>
     </div>
   );
 };
