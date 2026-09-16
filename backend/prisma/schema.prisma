@@ -45,3 +45,14 @@ model Blog {
 
   @@map("blogs")
 }
+
+model Contact {
+  id Int @id @default(autoincrement())
+  name String
+  email String
+  subject String
+  message String
+  createAt DateTime @default(now())
+
+  @@map("contacts")
+}
