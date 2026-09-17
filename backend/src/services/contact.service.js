@@ -1,4 +1,5 @@
 import prisma from "../db/prisma.js";
+import ApiError from "../utils/apiError.js";
 
 const createContactService = async ({ name, email, subject, message }) => {
   if (!name?.trim()) {
@@ -38,4 +39,41 @@ const getContactService = async () => {
   });
 };
 
-export { createContactService, getContactService };
+const getContactServiceById = async ({ id }) => {
+  if (isNaN(id)) {
+    throw new Error(400, "Id is not valid");
+  }
+  await prisma.contact.findUnique({
+    where: {
+      id: Number(id),
+    },
+    select: {
+      name: true,
+      email: true,
+      subject: true,
+      message: true,
+    },
+  });
+};
+const deleteContactService = async ({ id }) => {
+  if (isNaN(id)) {
+    throw new ApiError(400, "Id is not valid");
+  }
+  const contact = await prisma.contact.findUnique({
+    where: { id: Number(id) },
+  });
+  if (!contact) {
+    throw new ApiError(404, "Contact not found");
+  }
+  const deletedContact = await prisma.contact.delete({
+    where: { id: Number(id) },
+  });
+  return deletedContact;
+};
+
+export {
+  createContactService,
+  getContactService,
+  getContactServiceById,
+  deleteContactService,
+};
