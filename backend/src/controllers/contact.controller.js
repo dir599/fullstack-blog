@@ -3,8 +3,9 @@ import {
   deleteContactService,
   getContactService,
 } from "../services/contact.service.js";
-import asyncHandler from "../utils/asyncHandler.js";
+import {asyncHandler} from "../utils/asyncHandler.js";
 import apiError from "../utils/apiError.js";
+
 const createContact = asyncHandler(async (req, res) => {
   const { name, email, subject, message } = req.body;
   const contact = await createContactService({ name, email, subject, message });
