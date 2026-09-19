@@ -8,24 +8,24 @@ import SingleBlog from "./pages/SingleBlog";
 import CreateBlog from "./pages/CreateBlog";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
-
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
     <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/sidebar" element={<Sidebar />} />
-      <Route path= "/home" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/createBlog" element={<CreateBlog />} />
-      <Route path="/blog/:id" element={<SingleBlog />} />
-      
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sidebar" element={<Sidebar />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/createBlog" element={<CreateBlog />} />
+        </Route>
+        <Route path="/blog/:id" element={<SingleBlog />} />
+      </Routes>
     </BrowserRouter>
-    
   );
 };
 
