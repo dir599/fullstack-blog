@@ -1,9 +1,33 @@
 
+import axios from "axios";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate() 
+  const [loading, setLoading] = useState(false)
+  const logoutBlog = async()=>{
+    try {
+      setLoading(true)
+      await axios.patch("http://localhost:9000/auth/logOut",
+        // data
+        {},
+        {
+          withCredentials: true
+        }
+      )
+      navigate("/login")
+    } catch (error) {
+      console.log("logout fail", error);
+      
+    }finally{
+      setLoading(false)
+    }
+
+  }
   return (
-    <aside className="w-64 min-h-screen bg-gray-900 text-white p-5">
+    <aside className="sticky top-0 w-64 min-h-screen bg-gray-900 text-white p-5">
       
       {/* Logo */}
       <div className="mb-8">
@@ -57,8 +81,8 @@ const Sidebar = () => {
 
       {/* Bottom section */}
       <div className="mt-auto pt-10">
-        <button className="w-full rounded-lg bg-red-500 px-4 py-3 font-medium hover:bg-red-600 transition">
-          Logout
+        <button className="w-full rounded-lg bg-red-500 px-4 py-3 font-medium hover:bg-red-600 transition" onClick={logoutBlog} disabled={loading}>
+          {loading ? "Logging out..." : "Logout"}
         </button>
       </div>
 
