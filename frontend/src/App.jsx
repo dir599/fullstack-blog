@@ -9,6 +9,7 @@ import CreateBlog from "./pages/CreateBlog";
 import Login from "./pages/Login";
 import Sidebar from "./components/Sidebar";
 import ProtectedRoute from "./components/ProtectedRoute";
+import EditBlog from "./pages/EditBlog";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/createBlog" element={<CreateBlog />} />
+          <Route path="/editBlog/:id" element={<EditBlog />} />
         </Route>
         <Route path="/blog/:id" element={<SingleBlog />} />
       </Routes>

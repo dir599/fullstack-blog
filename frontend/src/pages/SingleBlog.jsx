@@ -111,7 +111,9 @@ const SingleBlog = () => {
           <div className="flex gap-4 mt-10 pt-6 border-t">
             <button
               className="rounded-lg bg-blue-600 px-6 py-2.5 text-white font-medium
-                         hover:bg-blue-700 transition" onClick={updateBlog}
+                         hover:bg-blue-700 transition" onClick={()=>{
+                          navigate(`/editBlog/${id}`)
+                         }}
             >
               Edit
             </button>
